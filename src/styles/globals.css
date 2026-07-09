@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════════════════════
+   BASE LAYER
+   ══════════════════════════════════════════════════════════ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-base text-text-primary font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.35);
+    color: #fff;
+  }
+
+  /* Custom scrollbar — thin, dark, brand-tinted thumb */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: theme('colors.bg.base');
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    border: 2px solid theme('colors.bg.base');
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.35);
+  }
+
+  /* Focus ring — accessible, on-brand */
+  :where(a, button, input, textarea, select, summary):focus-visible {
+    outline: 2px solid theme('colors.blue.DEFAULT');
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   COMPONENTS LAYER — reusable primitives referenced across sections
+   ══════════════════════════════════════════════════════════ */
+@layer components {
+  /* Page container — consistent max-width + gutters */
+  .container-base {
+    @apply max-w-container mx-auto px-6;
+  }
+
+  /* Section vertical rhythm */
+  .section-y {
+    @apply py-20 md:py-28;
+  }
+
+  /* Gradient text utility */
+  .text-gradient-primary {
+    @apply bg-grad-primary bg-clip-text text-transparent;
+  }
+  .text-gradient-warm {
+    @apply bg-grad-warm bg-clip-text text-transparent;
+  }
+
+  /* Glass card — the core surface primitive used everywhere */
+  .glass-card {
+    @apply relative bg-surface rounded-xl transition-colors duration-350;
+    isolation: isolate;
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: theme('backgroundImage.grad-card-border');
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .glass-card:hover {
+    @apply bg-surface-hover;
+  }
+
+  /* Eyebrow label — small caps kicker above section titles */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-eyebrow text-cyan mb-3;
+  }
+  .eyebrow-dot {
+    @apply w-1.5 h-1.5 rounded-full bg-cyan;
+    box-shadow: 0 0 8px theme('colors.cyan.DEFAULT');
+  }
+
+  /* Section divider line — fades at edges */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      theme('colors.border.DEFAULT') 30%,
+      theme('colors.border.DEFAULT') 70%,
+      transparent 100%
+    );
+  }
+
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 text-body-xs font-semibold
+           px-6 py-3 rounded-md text-white
+           bg-grad-blue-dark shadow-glow-blue
+           transition-all duration-350 ease-expo-out;
+  }
+  .btn-primary:hover {
+    @apply shadow-glow-blue-lg -translate-y-0.5;
+  }
+
+  /* Secondary / outline button */
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 text-body-xs font-semibold
+           px-6 py-3 rounded-md text-text-secondary
+           bg-surface border border-border
+           transition-all duration-350 ease-expo-out;
+  }
+  .btn-secondary:hover {
+    @apply bg-surface-hover border-border-hover text-text-primary -translate-y-0.5;
+  }
+
+  /* Tag / pill chip */
+  .tag-chip {
+    @apply text-label-sm px-2.5 py-1 rounded-xs bg-white/[0.04] border border-border text-text-tertiary
+           transition-colors duration-200;
+  }
+
+  /* Noise overlay — apply to a fixed full-bleed layer once at app root */
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: theme('backgroundImage.noise');
+    opacity: 0.4;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   UTILITIES LAYER — one-off helpers
+   ══════════════════════════════════════════════════════════ */
+@layer utilities {
+  .mask-radial-fade {
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
+  }
+
+  /* Respect reduced-motion preference globally */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
