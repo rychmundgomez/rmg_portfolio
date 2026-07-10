@@ -49,6 +49,7 @@ export class DotShotEngine {
   hubY = 0
   hubRadius = 64
   pinRadius = 8
+  pinLength = 20
 
   hubRotation = 0
   hubBaseSpeed = 0.55 // radians/sec
@@ -79,8 +80,12 @@ export class DotShotEngine {
     this.height = height
     this.hubX = width / 2
     this.hubY = height * 0.32
-    this.hubRadius = Math.max(46, Math.min(width, height) * 0.16)
-    this.pinRadius = Math.max(5, this.hubRadius * 0.125)
+    // Bigger hub = more rim circumference = more physical room for pins.
+    this.hubRadius = Math.max(58, Math.min(width, height) * 0.2)
+    // Pins are now thin stubs with a small dot cap (like a real pin), not
+    // fat balls sitting on the rim, so the cap can stay small and fixed-ish.
+    this.pinRadius = Math.max(4.5, this.hubRadius * 0.075)
+    this.pinLength = Math.max(16, this.hubRadius * 0.34)
   }
 
   start() {
@@ -106,8 +111,11 @@ export class DotShotEngine {
   private currentPinInterval(): number {
     // Angular gap (radians) required between pins — shrinks slightly as
     // the ring fills up, making the late game genuinely harder.
-    const base = 0.62
-    const tighten = Math.min(this.pins.length * 0.012, 0.22)
+    // Pins are now thin pins rather than fat balls, so the required gap
+    // can be much tighter (close to CloudStudio's own DOT SHOT, ~0.165rad)
+    // while still leaving real breathing room around the hub.
+    const base = 0.26
+    const tighten = Math.min(this.pins.length * 0.0028, 0.09)
     return base - tighten
   }
 
@@ -151,7 +159,7 @@ export class DotShotEngine {
     if (!this.started) return
 
     // Hub rotation — sped up and possibly reversed during a boss wave.
-    const speedMultiplier = this.bossActive ? 1.9 : 1 + Math.min(this.pins.length * 0.018, 0.9)
+    const speedMultiplier = this.bossActive ? 1.7 : 1 + Math.min(this.pins.length * 0.014, 0.75)
     this.hubRotation += this.hubBaseSpeed * speedMultiplier * this.hubDirection * dt
 
     // Particles
@@ -170,8 +178,11 @@ export class DotShotEngine {
     const dx = this.shot.x - this.hubX
     const dy = this.shot.y - this.hubY
     const distToCenter = Math.hypot(dx, dy)
+    // Pins now stick out from the rim, so the shot travels up to meet the
+    // tip of the pin ring, not the bare hub surface.
+    const ringRadius = this.hubRadius + this.pinLength
 
-    if (distToCenter <= this.hubRadius + this.pinRadius) {
+    if (distToCenter <= ringRadius) {
       const impactAngle = Math.atan2(dy, dx)
       const offsetAngle = normalizeAngle(impactAngle - this.hubRotation)
 
@@ -181,8 +192,8 @@ export class DotShotEngine {
         return wrapped < this.currentPinInterval()
       })
 
-      const stuckX = this.hubX + Math.cos(impactAngle) * this.hubRadius
-      const stuckY = this.hubY + Math.sin(impactAngle) * this.hubRadius
+      const stuckX = this.hubX + Math.cos(impactAngle) * ringRadius
+      const stuckY = this.hubY + Math.sin(impactAngle) * ringRadius
 
       if (tooClose) {
         this.spawnBurst(stuckX, stuckY, colorsRgb.amber, 24)
@@ -244,28 +255,38 @@ export class DotShotEngine {
     ctx.arc(this.hubX, this.hubY, this.hubRadius, 0, Math.PI * 2)
     ctx.fill()
 
-    // Pins
+    // Pins — a thin stub from the rim out to a small dot cap at the tip,
+    // like an actual pin, instead of a fat ball sitting on the rim.
     for (const pin of this.pins) {
       const angle = pin.offsetAngle + this.hubRotation
-      const x = this.hubX + Math.cos(angle) * this.hubRadius
-      const y = this.hubY + Math.sin(angle) * this.hubRadius
+      const x1 = this.hubX + Math.cos(angle) * this.hubRadius
+      const y1 = this.hubY + Math.sin(angle) * this.hubRadius
+      const x2 = this.hubX + Math.cos(angle) * (this.hubRadius + this.pinLength)
+      const y2 = this.hubY + Math.sin(angle) * (this.hubRadius + this.pinLength)
+
+      ctx.beginPath()
+      ctx.strokeStyle = `rgba(${pin.colorRgb},0.85)`
+      ctx.lineWidth = 2.5
+      ctx.moveTo(x1, y1)
+      ctx.lineTo(x2, y2)
+      ctx.stroke()
 
       ctx.beginPath()
       ctx.fillStyle = `rgba(${pin.colorRgb},1)`
       ctx.shadowColor = `rgba(${pin.colorRgb},0.8)`
-      ctx.shadowBlur = pin.golden ? 16 : 8
-      ctx.arc(x, y, pin.golden ? this.pinRadius * 1.15 : this.pinRadius, 0, Math.PI * 2)
+      ctx.shadowBlur = pin.golden ? 14 : 7
+      ctx.arc(x2, y2, pin.golden ? this.pinRadius * 1.3 : this.pinRadius, 0, Math.PI * 2)
       ctx.fill()
     }
     ctx.shadowBlur = 0
 
-    // Active shot
+    // Active shot — a small dot, matching the pin cap size, not a big ball.
     if (this.shot) {
       ctx.beginPath()
       ctx.fillStyle = `rgba(${colorsRgb.cyan},1)`
       ctx.shadowColor = `rgba(${colorsRgb.cyan},0.9)`
-      ctx.shadowBlur = 12
-      ctx.arc(this.shot.x, this.shot.y, this.pinRadius, 0, Math.PI * 2)
+      ctx.shadowBlur = 10
+      ctx.arc(this.shot.x, this.shot.y, this.pinRadius * 0.9, 0, Math.PI * 2)
       ctx.fill()
       ctx.shadowBlur = 0
     }
