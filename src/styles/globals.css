@@ -219,6 +219,103 @@
     position: relative;
     z-index: 1;
   }
+  /* Brighter variant — for feature-level callouts (the "Sync with GitHub"
+     style card): whiter, more saturated blooms + a thin glowing top edge,
+     not just a faint corner tint. */
+  .flare-surface--bright::before {
+    opacity: 0.75;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.6), transparent 68%);
+  }
+  .flare-surface--bright::after {
+    opacity: 0.6;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.55), transparent 68%);
+  }
+  .flare-surface--bright:hover::before {
+    opacity: 1;
+  }
+  .flare-surface--bright .flare-edge {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+    box-shadow: 0 0 16px 1px rgba(255, 255, 255, 0.45);
+    z-index: 1;
+  }
+
+  /* Header flare — the long, bright, "live" light beam across the very
+     top of the hero, with a soft downward color wash and a slow
+     traveling shimmer, matching the Huly reference. */
+  .header-flare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .header-flare::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(59, 130, 246, 0.75) 18%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(6, 182, 212, 0.75) 82%,
+      transparent 100%
+    );
+    box-shadow: 0 0 16px 1px rgba(255, 255, 255, 0.55), 0 0 60px 10px rgba(59, 130, 246, 0.4);
+  }
+  .header-flare::after {
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    width: 160px;
+    height: 5px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    filter: blur(3px);
+    animation: flare-sweep 7s ease-in-out infinite;
+  }
+  /* Soft light bleeding down from the header beam into the hero */
+  .header-flare-wash {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1000px, 92%);
+    height: 320px;
+    background: radial-gradient(
+      ellipse at top,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(59, 130, 246, 0.14) 35%,
+      transparent 72%
+    );
+    filter: blur(16px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Sitewide aurora wash — fixed color blobs behind every section so the
+     page reads as "dark with color moving through it" rather than flat
+     black. Mounted once at the app root. */
+  .aurora-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(110px);
+    mix-blend-mode: screen;
+  }
 
   /* Fine dot-grid texture — the subtle background pattern visible inside
      Huly's dark UI tiles. Combine with .mask-radial-fade to taper the edges. */

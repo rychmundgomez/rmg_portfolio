@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScrollProgress from '@components/layout/ScrollProgress'
 import CursorGlow from '@components/layout/CursorGlow'
+import AuroraBackground from '@components/layout/AuroraBackground'
 import ErrorBoundary from '@components/layout/ErrorBoundary'
 import HomePage from '@pages/HomePage'
 import PlayPage from '@pages/PlayPage'
@@ -17,7 +18,8 @@ export default function App() {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      {/* Fixed full-bleed noise texture — sits behind all routes */}
+      {/* Fixed color wash, then fixed noise texture — both sit behind all routes */}
+      <AuroraBackground />
       <div className="noise-overlay" aria-hidden="true" />
       <CursorGlow />
       <ScrollProgress />

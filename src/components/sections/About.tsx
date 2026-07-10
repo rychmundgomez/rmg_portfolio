@@ -5,7 +5,7 @@ import { aboutBio, aboutStats } from '@data/about'
 
 export default function About() {
   return (
-    <section id="about" className="section-y bg-bg-subtle relative">
+    <section id="about" className="section-y bg-bg-subtle/70 relative">
       <div className="container-base grid md:grid-cols-2 gap-16 items-start">
         <div>
           <SectionHeader

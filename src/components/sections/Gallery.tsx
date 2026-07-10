@@ -30,7 +30,7 @@ export default function Gallery() {
   }
 
   return (
-    <section id="gallery" className="section-y bg-bg-subtle">
+    <section id="gallery" className="section-y bg-bg-subtle/70">
       <div className="container-base">
         <SectionHeader
           eyebrow="Creative Work"

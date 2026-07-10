@@ -12,7 +12,7 @@ const BADGE_STYLES: Record<string, string> = {
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-y bg-bg-subtle">
+    <section id="experience" className="section-y bg-bg-subtle/70">
       <div className="container-base">
         <SectionHeader
           eyebrow="Career"

@@ -55,7 +55,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="section-y bg-bg-subtle">
+    <section id="contact" className="section-y bg-bg-subtle/70">
       <div className="container-base grid md:grid-cols-2 gap-16 items-start">
         <div>
           <SectionHeader

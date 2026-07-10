@@ -4,7 +4,7 @@ import { education } from '@data/education'
 
 export default function Education() {
   return (
-    <section id="education" className="section-y bg-bg-subtle">
+    <section id="education" className="section-y bg-bg-subtle/70">
       <div className="container-base">
         <SectionHeader eyebrow="Learning" title="Education & Training" className="mb-12" />
 

@@ -93,22 +93,18 @@ export default function Hero() {
       <div
         ref={flare1Ref}
         className="absolute w-[700px] h-[700px] rounded-full pointer-events-none -top-52 -right-24 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%)' }}
       />
       <div
         ref={flare2Ref}
         className="absolute w-[500px] h-[500px] rounded-full pointer-events-none -bottom-36 -left-12 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)' }}
       />
 
-      {/* Top hairline gradient */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px z-[1]"
-        style={{
-          background:
-            'linear-gradient(90deg, transparent 0%, rgba(59,130,246,0.4) 40%, rgba(6,182,212,0.4) 60%, transparent 100%)',
-        }}
-      />
+      {/* Header flare — the long, bright, "live" light beam across the
+          top of the hero, with a soft color wash bleeding down into it. */}
+      <div className="header-flare" />
+      <div className="header-flare-wash" />
 
       {/* Left: text content */}
       <div className="relative z-10 container-base md:pr-0 max-w-xl md:ml-auto md:mr-0">
