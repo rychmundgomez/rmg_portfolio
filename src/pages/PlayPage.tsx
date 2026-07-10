@@ -2,8 +2,10 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowLeft, Play, RotateCcw, Trophy } from 'lucide-react'
 import { useDotShot } from '@hooks/useDotShot'
+import { useDocumentTitle } from '@hooks/useDocumentTitle'
 
 export default function PlayPage() {
+  useDocumentTitle('Dot Shot')
   const { canvasRef, containerRef, snapshot, start, fire } = useDotShot()
   const { score, best, gameOver, started, bossActive, canFire } = snapshot
 

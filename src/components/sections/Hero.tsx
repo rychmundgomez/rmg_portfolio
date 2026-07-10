@@ -181,7 +181,7 @@ export default function Hero() {
           <a
             href={socialLinks.linkedin}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="LinkedIn"
             className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
           >
@@ -190,7 +190,7 @@ export default function Hero() {
           <a
             href={socialLinks.github}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="GitHub"
             className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
           >
@@ -199,7 +199,7 @@ export default function Hero() {
           <a
             href={socialLinks.stackupNest}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="StackUp Nest"
             className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
           >

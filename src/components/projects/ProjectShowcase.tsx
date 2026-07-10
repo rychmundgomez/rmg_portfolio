@@ -35,7 +35,7 @@ function ProjectLinkButton({ link }: { link: ProjectLink }) {
   }
 
   return (
-    <a href={link.href} target="_blank" rel="noreferrer" className={classes}>
+    <a href={link.href} target="_blank" rel="noopener noreferrer" className={classes}>
       <Icon size={14} aria-hidden="true" />
       {link.label}
     </a>
