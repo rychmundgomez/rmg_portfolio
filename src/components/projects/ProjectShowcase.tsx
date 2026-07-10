@@ -57,9 +57,14 @@ export default function ProjectShowcase({ project, index }: { project: Project; 
     >
       {/* Image column */}
       <div className={cn('order-1', imageFirst ? 'md:order-1' : 'md:order-2')}>
-        <div className="aspect-video rounded-lg bg-gradient-to-br from-bg-overlay to-bg-muted border border-border flex flex-col items-center justify-center gap-2.5 text-text-tertiary p-6 text-center">
-          <ImageIcon size={28} strokeWidth={1.3} className="opacity-30" aria-hidden="true" />
-          <span className="text-label-sm">{project.imageBrief}</span>
+        <div className="flare-surface aspect-video rounded-lg border border-border overflow-hidden">
+          <div className="absolute inset-0 bg-dot-grid mask-radial-fade" aria-hidden="true" />
+          <div className="relative h-full flex flex-col items-center justify-center gap-2.5 text-text-tertiary p-6 text-center">
+            <div className="w-12 h-12 rounded-full bg-white/5 border border-border flex items-center justify-center shadow-glow-blue">
+              <ImageIcon size={22} strokeWidth={1.3} className="opacity-60 text-blue-light" aria-hidden="true" />
+            </div>
+            <span className="text-label-sm">{project.imageBrief}</span>
+          </div>
         </div>
       </div>
 
