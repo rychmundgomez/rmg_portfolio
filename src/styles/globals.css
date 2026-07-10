@@ -25,6 +25,13 @@
     @apply font-display;
   }
 
+  /* Every section is a jump target for the nav — without this, the fixed
+     navbar overlaps whatever scrolls to the top. Acts as a safety net even
+     before useSmoothAnchorScroll's JS-driven offset scroll takes over. */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+
   ::selection {
     background: rgba(59, 130, 246, 0.35);
     color: #fff;

@@ -1,10 +1,12 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { useGSAP } from '@gsap/react'
 import { Github, Linkedin, Link2, Mail, Play, User } from 'lucide-react'
 import Button from '@components/ui/Button'
 import { useTypewriter } from '@hooks/useTypewriter'
 import { useMediaQuery } from '@hooks/useMediaQuery'
 import { useReducedMotion } from '@hooks/useReducedMotion'
+import { gsap } from '@lib/gsapConfig'
 import { heroRoles, socialLinks } from '@data/about'
 
 // Code-split: the three-vendor chunk (~220kB gzipped) only loads on
@@ -19,8 +21,61 @@ export default function Hero() {
   const isDesktop = useMediaQuery('(min-width: 900px)')
   const reduced = useReducedMotion()
 
+  const sectionRef = useRef<HTMLElement>(null)
+  const flare1Ref = useRef<HTMLDivElement>(null)
+  const flare2Ref = useRef<HTMLDivElement>(null)
+  const photoRingRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      if (reduced || !sectionRef.current) return
+
+      // Parallax: the two background flares drift at different rates as
+      // the hero scrolls past, tied directly to scroll position (scrub)
+      // rather than time — so it tracks the scrollbar exactly, no easing lag.
+      if (flare1Ref.current) {
+        gsap.to(flare1Ref.current, {
+          yPercent: 28,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      }
+      if (flare2Ref.current) {
+        gsap.to(flare2Ref.current, {
+          yPercent: -18,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      }
+
+      // Floating idle motion on the photo ring — a slow, continuous
+      // vertical drift independent of scroll.
+      if (photoRingRef.current) {
+        gsap.to(photoRingRef.current, {
+          y: 14,
+          duration: 2.6,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+        })
+      }
+    },
+    { scope: sectionRef, dependencies: [reduced] }
+  )
+
   return (
     <section
+      ref={sectionRef}
       id="hero"
       className="relative min-h-screen grid md:grid-cols-2 gap-12 items-center pt-32 pb-20 overflow-hidden"
     >
@@ -34,12 +89,14 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Radial glow flares — always present, cheap CSS */}
+      {/* Radial glow flares — parallax-driven by GSAP ScrollTrigger, see useGSAP above */}
       <div
+        ref={flare1Ref}
         className="absolute w-[700px] h-[700px] rounded-full pointer-events-none -top-52 -right-24 z-0"
         style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%)' }}
       />
       <div
+        ref={flare2Ref}
         className="absolute w-[500px] h-[500px] rounded-full pointer-events-none -bottom-36 -left-12 z-0"
         style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)' }}
       />
@@ -152,7 +209,7 @@ export default function Hero() {
       </div>
 
       {/* Right: photo ring (desktop only) */}
-      <div className="hidden md:flex relative z-10 justify-start pl-4">
+      <div ref={photoRingRef} className="hidden md:flex relative z-10 justify-start pl-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
