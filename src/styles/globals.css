@@ -163,6 +163,25 @@
     background-image: theme('backgroundImage.noise');
     opacity: 0.4;
   }
+
+  /* Skip link — invisible until keyboard-focused, standard a11y pattern
+     for letting keyboard users bypass the navbar and jump to content. */
+  .skip-link {
+    position: fixed;
+    top: -60px;
+    left: 14px;
+    z-index: 500;
+    background: theme('colors.blue.DEFAULT');
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus-visible {
+    top: 14px;
+  }
 }
 
 /* ══════════════════════════════════════════════════════════

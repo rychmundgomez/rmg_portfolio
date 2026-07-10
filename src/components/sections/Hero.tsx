@@ -160,14 +160,14 @@ export default function Hero() {
           className="flex flex-wrap gap-3 mb-8"
         >
           <Button href="#projects" variant="primary">
-            <Play size={14} />
+            <Play size={14} aria-hidden="true" />
             View Projects
           </Button>
           <Button href="#contact" variant="secondary">
             Contact Me
           </Button>
           <Button href={`mailto:${socialLinks.email}`} variant="secondary">
-            <Mail size={14} />
+            <Mail size={14} aria-hidden="true" />
             Email
           </Button>
         </motion.div>
@@ -185,7 +185,7 @@ export default function Hero() {
             aria-label="LinkedIn"
             className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
           >
-            <Linkedin size={15} />
+            <Linkedin size={15} aria-hidden="true" />
           </a>
           <a
             href={socialLinks.github}
@@ -194,7 +194,7 @@ export default function Hero() {
             aria-label="GitHub"
             className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
           >
-            <Github size={15} />
+            <Github size={15} aria-hidden="true" />
           </a>
           <a
             href={socialLinks.stackupNest}
@@ -203,7 +203,7 @@ export default function Hero() {
             aria-label="StackUp Nest"
             className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
           >
-            <Link2 size={15} />
+            <Link2 size={15} aria-hidden="true" />
           </a>
         </motion.div>
       </div>
@@ -227,10 +227,10 @@ export default function Hero() {
             }}
           />
           {/* Replace this placeholder with:
-              <img src="/your-photo.jpg" className="w-[274px] h-[274px] rounded-full object-cover relative z-[1]" />
+              <img src="/your-photo.jpg" alt="Richmond Makafui Gamor" className="w-[274px] h-[274px] rounded-full object-cover relative z-[1]" />
           */}
           <div className="relative z-[1] w-[274px] h-[274px] rounded-full bg-gradient-to-br from-[#111827] to-[#0d1120] flex flex-col items-center justify-center gap-2 m-auto mt-[3px] ml-[3px]">
-            <User size={48} className="text-text-tertiary opacity-25" strokeWidth={1.2} />
+            <User size={48} className="text-text-tertiary opacity-25" strokeWidth={1.2} aria-hidden="true" />
             <span className="text-label-sm text-text-tertiary">Add your photo</span>
           </div>
         </motion.div>

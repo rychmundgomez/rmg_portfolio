@@ -28,7 +28,7 @@ function ProjectLinkButton({ link }: { link: ProjectLink }) {
   if (link.kind === 'internal') {
     return (
       <Link to={link.href} className={classes}>
-        <Icon size={14} />
+        <Icon size={14} aria-hidden="true" />
         {link.label}
       </Link>
     )
@@ -36,7 +36,7 @@ function ProjectLinkButton({ link }: { link: ProjectLink }) {
 
   return (
     <a href={link.href} target="_blank" rel="noreferrer" className={classes}>
-      <Icon size={14} />
+      <Icon size={14} aria-hidden="true" />
       {link.label}
     </a>
   )
@@ -58,7 +58,7 @@ export default function ProjectShowcase({ project, index }: { project: Project; 
       {/* Image column */}
       <div className={cn('order-1', imageFirst ? 'md:order-1' : 'md:order-2')}>
         <div className="aspect-video rounded-lg bg-gradient-to-br from-bg-overlay to-bg-muted border border-border flex flex-col items-center justify-center gap-2.5 text-text-tertiary p-6 text-center">
-          <ImageIcon size={28} strokeWidth={1.3} className="opacity-30" />
+          <ImageIcon size={28} strokeWidth={1.3} className="opacity-30" aria-hidden="true" />
           <span className="text-label-sm">{project.imageBrief}</span>
         </div>
       </div>

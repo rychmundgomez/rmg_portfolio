@@ -30,7 +30,11 @@ const config: Config = {
         text: {
           primary:   '#ECEFF4',
           secondary: '#8492A6',
-          tertiary:  '#4A5568',
+          // Was #4A5568 (2.63:1 against bg-base — fails WCAG AA even for
+          // large text). This value measures 4.56:1, passing AA for
+          // normal-size text. See contrast_check.py in the repo history
+          // if this ever needs re-verifying after a palette change.
+          tertiary:  '#6B7A94',
           disabled:  '#2D3748',
         },
         // Brand accents

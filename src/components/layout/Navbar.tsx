@@ -58,14 +58,18 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle navigation menu"
           aria-expanded={open}
+          aria-controls="mobile-nav-menu"
         >
-          {open ? <X size={22} /> : <Menu size={22} />}
+          {open ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-bg-base/95 backdrop-blur-nav border-b border-border px-6 py-6 flex flex-col gap-5">
+        <div
+          id="mobile-nav-menu"
+          className="md:hidden bg-bg-base/95 backdrop-blur-nav border-b border-border px-6 py-6 flex flex-col gap-5"
+        >
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}

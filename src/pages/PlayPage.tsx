@@ -8,7 +8,7 @@ export default function PlayPage() {
   const { score, best, gameOver, started, bossActive, canFire } = snapshot
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10 overflow-hidden">
+    <main id="main-content" className="relative min-h-screen flex flex-col items-center justify-center px-4 py-10 overflow-hidden">
       {/* Background flares — consistent with the rest of the site */}
       <div
         className="absolute w-[600px] h-[600px] rounded-full pointer-events-none -top-40 -left-24 z-0"
@@ -23,7 +23,7 @@ export default function PlayPage() {
         to="/"
         className="absolute top-6 left-6 z-20 inline-flex items-center gap-2 text-label-md text-text-secondary hover:text-text-primary transition-colors duration-200"
       >
-        <ArrowLeft size={16} />
+        <ArrowLeft size={16} aria-hidden="true" />
         Portfolio
       </Link>
 
@@ -33,14 +33,21 @@ export default function PlayPage() {
           Dot Shot
         </h1>
 
-        {/* HUD */}
+        {/* HUD — the live region here is the accessible score readout;
+            the canvas itself is visual/pointer-only (see aria-hidden below). */}
         <div className="flex items-center gap-6 mb-4 text-body-sm">
           <div className="flex items-center gap-1.5">
             <span className="text-text-tertiary text-label-sm">Score</span>
-            <span className="font-display font-semibold tabular-nums">{score}</span>
+            <span
+              className="font-display font-semibold tabular-nums"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {score}
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Trophy size={14} className="text-amber" />
+            <Trophy size={14} className="text-amber" aria-hidden="true" />
             <span className="font-display font-semibold tabular-nums">{best}</span>
           </div>
           <AnimatePresence>
@@ -57,10 +64,18 @@ export default function PlayPage() {
           </AnimatePresence>
         </div>
 
-        {/* Game surface */}
+        {/* Game surface. The canvas is a real-time visual/pointer game with
+            no meaningful text representation, so it's hidden from assistive
+            tech (aria-hidden + tabIndex=-1) rather than left as an
+            unlabeled, unusable focus stop. Everyone gets the same controls
+            though: the Start/Fire/Play Again buttons and the live score
+            readout above are all real, focusable, screen-reader-visible
+            elements — spacebar-to-fire also works regardless of focus. */}
         <div ref={containerRef} className="relative glass-card p-2 rounded-2xl w-full max-w-[420px] mx-auto">
           <canvas
             ref={canvasRef}
+            aria-hidden="true"
+            tabIndex={-1}
             onPointerDown={() => (started && !gameOver ? fire() : undefined)}
             className="rounded-xl block w-full h-auto cursor-crosshair touch-none"
             style={{ background: 'radial-gradient(circle at 50% 30%, #111520 0%, #090a0c 75%)' }}
@@ -82,7 +97,7 @@ export default function PlayPage() {
                   Every 6th pin is golden · every 8th triggers a Boss Wave
                 </p>
                 <button onClick={start} className="btn-primary">
-                  <Play size={15} />
+                  <Play size={15} aria-hidden="true" />
                   Start Game
                 </button>
                 <p className="text-label-xs text-text-tertiary mt-5">
@@ -112,7 +127,7 @@ export default function PlayPage() {
                 )}
                 {!(score >= best && score > 0) && <div className="mb-4" />}
                 <button onClick={start} className="btn-primary">
-                  <RotateCcw size={15} />
+                  <RotateCcw size={15} aria-hidden="true" />
                   Play Again
                 </button>
               </motion.div>

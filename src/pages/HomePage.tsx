@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <Hero />
         <About />
         <Skills />

@@ -12,6 +12,9 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       {/* Fixed full-bleed noise texture — sits behind all routes */}
       <div className="noise-overlay" aria-hidden="true" />
       <CursorGlow />

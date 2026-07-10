@@ -39,7 +39,7 @@ export default function Skills() {
                     ICON_BG[cat.color]
                   )}
                 >
-                  <Icon size={18} className={ICON_COLOR[cat.color]} strokeWidth={2} />
+                  <Icon size={18} className={ICON_COLOR[cat.color]} strokeWidth={2} aria-hidden="true" />
                 </div>
                 <h3 className="font-display font-semibold text-body-md mb-3.5">{cat.title}</h3>
                 <div className="flex flex-wrap gap-1.5">

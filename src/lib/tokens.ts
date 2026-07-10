@@ -17,7 +17,9 @@ export const colors = {
   text: {
     primary: '#ECEFF4',
     secondary: '#8492A6',
-    tertiary: '#4A5568',
+    // Kept in sync with tailwind.config.ts — see the comment there for
+    // the contrast measurement (4.56:1, WCAG AA pass).
+    tertiary: '#6B7A94',
     disabled: '#2D3748',
   },
   brand: {
