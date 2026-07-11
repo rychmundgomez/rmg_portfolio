@@ -159,6 +159,13 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%':      { transform: 'translateY(8px)' },
         },
+        'flare-sweep': {
+          '0%':   { transform: 'translateX(-60%)', opacity: '0' },
+          '12%':  { opacity: '1' },
+          '50%':  { opacity: '1' },
+          '88%':  { opacity: '0' },
+          '100%': { transform: 'translateX(160%)', opacity: '0' },
+        },
       },
       animation: {
         'fade-in':      'fade-in 0.65s cubic-bezier(0.16, 1, 0.3, 1) both',
@@ -167,6 +174,7 @@ const config: Config = {
         'spin-slow':    'spin-slow 7s linear infinite',
         'drift':        'drift 16s ease-in-out infinite alternate',
         'scroll-bounce':'scroll-bounce 2s ease-in-out infinite',
+        'flare-sweep':  'flare-sweep 7s ease-in-out infinite',
       },
 
       // ── BACKDROP ─────────────────────────────────────
