@@ -25,12 +25,39 @@ export const socialLinks = {
   stackupNest: 'https://stackupnest.pages.dev',
 } as const
 
+export const orbitTools: string[] = [
+  'React',
+  'Python',
+  'GSAP',
+  'GitHub',
+  'Photoshop',
+  'Data Analysis',
+  'Video Editing',
+  'Cloudflare',
+]
+
+export const heroPreviewWindows = [
+  { id: 'dashboard', label: 'UI Dashboard' },
+  { id: 'brand', label: 'Brand Identity' },
+  { id: 'analytics', label: 'Analytics Dashboard' },
+  { id: 'video', label: 'Video Timeline' },
+] as const
+
+export const trustLayer: string[] = [
+  'Design',
+  'Analytics',
+  'Marketing',
+  'Operations',
+  'Media Production',
+]
+
 export const heroRoles: string[] = [
   'Graphic Designer.',
   'UI/UX Designer.',
   'Data Analyst.',
   'Digital Marketer.',
   'Video Editor.',
+  'Music Producer.',
   'Software Builder.',
   'Creative Technologist.',
 ]

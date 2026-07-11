@@ -349,6 +349,46 @@
     z-index: 1;
   }
 
+  /* ID-card flare frame — the light beam pours onto the top of the card
+     and flows down both edges, fading as it goes (see hand sketch: dense
+     scribble at top, tapering down the sides). Built with the
+     padding+gradient-background trick: the gradient IS the border. */
+  .card-flare-frame {
+    position: relative;
+    border-radius: 20px;
+    padding: 1.5px;
+    isolation: isolate;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(129, 180, 255, 0.75) 8%,
+      rgba(59, 130, 246, 0.4) 22%,
+      rgba(59, 130, 246, 0.14) 45%,
+      rgba(255, 255, 255, 0.06) 70%,
+      rgba(255, 255, 255, 0.06) 100%
+    );
+  }
+  .card-flare-frame::before {
+    /* the "splash" — a bright pooling glow where the beam hits the card */
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 140px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(59, 130, 246, 0.3) 45%, transparent 75%);
+    filter: blur(28px);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .card-flare-frame__inner {
+    border-radius: 18.5px;
+    background: linear-gradient(160deg, theme('colors.bg.overlay') 0%, theme('colors.bg.base') 100%);
+    height: 100%;
+  }
+
+
   /* Sitewide aurora wash — fixed color blobs behind every section so the
      page reads as "dark with color moving through it" rather than flat
      black. Mounted once at the app root. */

@@ -159,6 +159,9 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%':      { transform: 'translateY(8px)' },
         },
+        'orbit': {
+          to: { transform: 'rotate(360deg)' },
+        },
         'flare-sweep': {
           '0%':   { transform: 'translateX(-60%)', opacity: '0' },
           '12%':  { opacity: '1' },
@@ -174,6 +177,7 @@ const config: Config = {
         'spin-slow':    'spin-slow 7s linear infinite',
         'drift':        'drift 16s ease-in-out infinite alternate',
         'scroll-bounce':'scroll-bounce 2s ease-in-out infinite',
+        'orbit':         'orbit 32s linear infinite',
         'flare-sweep':  'flare-sweep 7s ease-in-out infinite',
       },
 

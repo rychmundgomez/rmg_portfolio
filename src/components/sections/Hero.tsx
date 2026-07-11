@@ -7,7 +7,7 @@ import { useTypewriter } from '@hooks/useTypewriter'
 import { useMediaQuery } from '@hooks/useMediaQuery'
 import { useReducedMotion } from '@hooks/useReducedMotion'
 import { gsap } from '@lib/gsapConfig'
-import { heroRoles, socialLinks } from '@data/about'
+import { heroRoles, socialLinks, orbitTools, trustLayer } from '@data/about'
 
 // Code-split: the three-vendor chunk (~220kB gzipped) only loads on
 // desktop viewports where the scene actually renders — see the
@@ -24,7 +24,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const flare1Ref = useRef<HTMLDivElement>(null)
   const flare2Ref = useRef<HTMLDivElement>(null)
-  const photoRingRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
@@ -58,12 +58,11 @@ export default function Hero() {
         })
       }
 
-      // Floating idle motion on the photo ring — a slow, continuous
-      // vertical drift independent of scroll.
-      if (photoRingRef.current) {
-        gsap.to(photoRingRef.current, {
-          y: 14,
-          duration: 2.6,
+      // Gentle idle float on the card — slow, gentle, no mouse tracking.
+      if (cardRef.current) {
+        gsap.to(cardRef.current, {
+          y: 10,
+          duration: 2.8,
           ease: 'sine.inOut',
           yoyo: true,
           repeat: -1,
@@ -101,9 +100,10 @@ export default function Hero() {
         style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)' }}
       />
 
-      {/* Vertical light beam — the actual Huly hero effect. Terminates
-          near the photo ring so it also gives the hero a focal point. */}
-      <div className="hero-light-beam hidden md:block" style={{ left: '72%' }} />
+      {/* Vertical light beam — falls from the top of the hero and pours
+          onto the ID card below (see .card-flare-frame on the card). */}
+      <div className="hero-light-beam hidden md:block" style={{ left: '74%' }} />
+
 
       {/* Left: text content */}
       <div className="relative z-10 container-base md:pr-0 max-w-xl md:ml-auto md:mr-0">
@@ -208,34 +208,84 @@ export default function Hero() {
             <Link2 size={15} aria-hidden="true" />
           </a>
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.65 }}
+          className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mt-7 text-label-xs text-text-tertiary"
+        >
+          <span className="uppercase tracking-[0.15em]">Worked across</span>
+          {trustLayer.map((item, i) => (
+            <span key={item} className="flex items-center gap-2.5">
+              {i > 0 && <span className="w-1 h-1 rounded-full bg-text-tertiary/40" />}
+              {item}
+            </span>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Right: photo ring (desktop only) */}
-      <div ref={photoRingRef} className="hidden md:flex relative z-10 justify-start pl-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
-          className="relative w-[280px] h-[280px]"
-        >
-          <div
-            className="absolute -inset-0.5 rounded-full animate-spin-slow"
-            style={{
-              background:
-                'conic-gradient(from 0deg, #3B82F6, #06B6D4, #8B5CF6, #3B82F6)',
-              WebkitMask:
-                'radial-gradient(farthest-side, transparent calc(100% - 2.5px), black 100%)',
-              mask: 'radial-gradient(farthest-side, transparent calc(100% - 2.5px), black 100%)',
-            }}
-          />
-          {/* Replace this placeholder with:
-              <img src="/your-photo.jpg" alt="Richmond Makafui Gamor" className="w-[274px] h-[274px] rounded-full object-cover relative z-[1]" />
-          */}
-          <div className="relative z-[1] w-[274px] h-[274px] rounded-full bg-gradient-to-br from-[#111827] to-[#0d1120] flex flex-col items-center justify-center gap-2 m-auto mt-[3px] ml-[3px]">
-            <User size={48} className="text-text-tertiary opacity-25" strokeWidth={1.2} aria-hidden="true" />
-            <span className="text-label-sm text-text-tertiary">Add your photo</span>
+      {/* Right: ID card — photo + name on the left half, role + attributes
+          on the right half, with the beam pouring onto its top edge */}
+      <div className="hidden md:flex relative z-10 justify-center items-center">
+        <div ref={cardRef}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
+            className="card-flare-frame w-[440px]"
+          >
+          <div className="card-flare-frame__inner grid grid-cols-2 gap-5 p-6">
+            {/* Left half: photo + name */}
+            <div className="flex flex-col">
+              {/* Replace this placeholder with:
+                  <img src="/your-photo.jpg" alt="Richmond Makafui Gamor" className="w-full aspect-[4/5] rounded-xl object-cover" />
+              */}
+              <div className="w-full aspect-[4/5] rounded-xl bg-gradient-to-br from-[#111827] to-[#0d1120] border border-border flex items-center justify-center mb-3">
+                <User size={40} className="text-text-tertiary opacity-30" strokeWidth={1.2} aria-hidden="true" />
+              </div>
+              <p className="text-label-sm tracking-[0.1em] uppercase text-text-primary font-semibold">
+                Richmond
+              </p>
+              <p className="text-label-xs text-text-tertiary">Makafui Gamor</p>
+            </div>
+
+            {/* Right half: role + attributes */}
+            <div className="flex flex-col">
+              <p className="font-display font-semibold text-body-md text-text-primary mb-1">
+                Creative Technologist
+              </p>
+              <div className="inline-flex items-center gap-1.5 text-label-xs text-green mb-4 w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse-dot" />
+                Available for projects
+              </div>
+
+              <ul className="space-y-2 mb-4">
+                {['Software Builder', 'Data Analyst', 'Fintech Operator', 'Based in Accra, Ghana'].map(
+                  (attr) => (
+                    <li key={attr} className="flex items-center gap-2 text-body-xs text-text-secondary">
+                      <span className="w-1 h-1 rounded-full bg-blue shrink-0" />
+                      {attr}
+                    </li>
+                  )
+                )}
+              </ul>
+
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border">
+                {orbitTools.slice(0, 6).map((tool) => (
+                  <span
+                    key={tool}
+                    className="w-7 h-7 rounded-md bg-white/[0.04] border border-border flex items-center justify-center text-[9px] font-semibold text-text-tertiary"
+                    title={tool}
+                  >
+                    {tool.charAt(0)}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </motion.div>
+        </div>
       </div>
 
       {/* Scroll hint */}
