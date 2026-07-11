@@ -22,7 +22,7 @@ export default function AuroraBackground() {
           height: '46vw',
           maxWidth: 640,
           maxHeight: 640,
-          background: 'radial-gradient(circle, rgba(59,130,246,0.65) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.24) 0%, transparent 70%)',
         }}
       />
       <div
@@ -34,7 +34,7 @@ export default function AuroraBackground() {
           height: '50vw',
           maxWidth: 700,
           maxHeight: 700,
-          background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.19) 0%, transparent 70%)',
           animationDelay: '-5s',
         }}
       />
@@ -47,7 +47,7 @@ export default function AuroraBackground() {
           height: '42vw',
           maxWidth: 560,
           maxHeight: 560,
-          background: 'radial-gradient(circle, rgba(6,182,212,0.55) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(6,182,212,0.19) 0%, transparent 70%)',
           animationDelay: '-10s',
         }}
       />
