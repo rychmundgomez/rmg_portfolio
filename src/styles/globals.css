@@ -148,6 +148,16 @@
     @apply bg-surface-hover border-border-hover text-text-primary -translate-y-0.5;
   }
 
+  /* Ghost button — lowest-emphasis CTA, text-only until hover */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-body-xs font-semibold
+           px-2 py-3 rounded-md text-text-secondary
+           transition-all duration-350 ease-expo-out;
+  }
+  .btn-ghost:hover {
+    @apply text-blue-light;
+  }
+
   /* Tag / pill chip */
   .tag-chip {
     @apply text-label-sm px-2.5 py-1 rounded-xs bg-white/[0.04] border border-border text-text-tertiary

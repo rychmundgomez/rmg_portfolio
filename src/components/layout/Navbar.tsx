@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ExternalLink } from 'lucide-react'
 import { useScrolled } from '@hooks/useScrolled'
 import { cn } from '@lib/utils'
 
 const NAV_LINKS = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Work' },
+  { href: '#skills', label: 'Expertise' },
   { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
+  { href: '/play', label: 'Playground' },
+  { href: '#gallery', label: 'Journal' },
 ]
 
 export default function Navbar() {
@@ -42,6 +43,17 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-body-xs font-medium text-text-secondary hover:text-text-primary transition-colors duration-200 inline-flex items-center gap-1"
+            >
+              Resume
+              <ExternalLink size={12} aria-hidden="true" />
+            </a>
+          </li>
           <li>
             <a
               href="#contact"
@@ -80,6 +92,16 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="text-body-sm font-medium text-text-secondary inline-flex items-center gap-1.5"
+          >
+            Resume
+            <ExternalLink size={13} aria-hidden="true" />
+          </a>
           <a
             href="#contact"
             onClick={closeMenu}

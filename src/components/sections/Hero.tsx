@@ -1,7 +1,7 @@
 import { lazy, Suspense, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
-import { Github, Linkedin, Link2, Mail, Play, User } from 'lucide-react'
+import { Github, Linkedin, Link2, ArrowRight, User } from 'lucide-react'
 import Button from '@components/ui/Button'
 import { useTypewriter } from '@hooks/useTypewriter'
 import { useMediaQuery } from '@hooks/useMediaQuery'
@@ -117,15 +117,23 @@ export default function Hero() {
           Open to opportunities
         </motion.div>
 
+        <motion.p
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.05, ease: EASE }}
+          className="text-label-xs tracking-[0.2em] uppercase text-text-tertiary mb-4"
+        >
+          Richmond Makafui Gamor
+        </motion.p>
+
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-          className="text-display-lg md:text-display-xl mb-4"
+          className="font-display font-bold text-[clamp(2.75rem,4.6vw,4.75rem)] leading-[1.04] tracking-[-0.035em] mb-4"
         >
-          <span className="text-gradient-primary">Richmond</span>
-          <br />
-          Makafui Gamor
+          Designing products, <span className="text-gradient-primary">experiences</span>, and
+          systems that move businesses forward.
         </motion.h1>
 
         <motion.p
@@ -144,8 +152,8 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.35, ease: EASE }}
           className="text-body-sm text-text-secondary max-w-prose-sm mb-8"
         >
-          Combining data, design, software, and operations to build things that actually
-          work — from fintech platforms to creative digital products.
+          Multidisciplinary creative and technology professional helping startups, businesses,
+          and digital products grow through design, data, marketing, software, and storytelling.
         </motion.p>
 
         <motion.div
@@ -155,15 +163,14 @@ export default function Hero() {
           className="flex flex-wrap gap-3 mb-8"
         >
           <Button href="#projects" variant="primary">
-            <Play size={14} aria-hidden="true" />
-            View Projects
+            Explore My Work
+            <ArrowRight size={14} aria-hidden="true" />
           </Button>
-          <Button href="#contact" variant="secondary">
-            Contact Me
+          <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer" variant="secondary">
+            Download Resume
           </Button>
-          <Button href={`mailto:${socialLinks.email}`} variant="secondary">
-            <Mail size={14} aria-hidden="true" />
-            Email
+          <Button href="#contact" variant="ghost">
+            Let's Collaborate
           </Button>
         </motion.div>
 

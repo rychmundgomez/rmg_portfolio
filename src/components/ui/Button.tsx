@@ -1,7 +1,7 @@
 import type { ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import { cn } from '@lib/utils'
 
-type Variant = 'primary' | 'secondary'
+type Variant = 'primary' | 'secondary' | 'ghost'
 
 interface CommonProps {
   variant?: Variant
@@ -23,7 +23,10 @@ type ButtonProps = AsAnchor | AsButton
  * defined in globals.css so raw HTML and React stay visually identical.
  */
 export default function Button({ variant = 'primary', children, className, ...props }: ButtonProps) {
-  const classes = cn(variant === 'primary' ? 'btn-primary' : 'btn-secondary', className)
+  const classes = cn(
+    variant === 'primary' ? 'btn-primary' : variant === 'secondary' ? 'btn-secondary' : 'btn-ghost',
+    className
+  )
 
   if ('href' in props && props.href !== undefined) {
     const { href, ...rest } = props as AnchorHTMLAttributes<HTMLAnchorElement>

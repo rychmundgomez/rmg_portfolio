@@ -26,10 +26,11 @@ export const socialLinks = {
 } as const
 
 export const heroRoles: string[] = [
-  'Creative Technologist.',
-  'Data Analyst.',
-  'Software Builder.',
-  'Fintech Operator.',
-  'Digital Entrepreneur.',
   'Graphic Designer.',
+  'UI/UX Designer.',
+  'Data Analyst.',
+  'Digital Marketer.',
+  'Video Editor.',
+  'Software Builder.',
+  'Creative Technologist.',
 ]
