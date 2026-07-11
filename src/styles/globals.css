@@ -244,59 +244,98 @@
     z-index: 1;
   }
 
-  /* Header flare — the long, bright, "live" light beam across the very
-     top of the hero, with a soft downward color wash and a slow
-     traveling shimmer, matching the Huly reference. */
-  .header-flare {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .header-flare::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(59, 130, 246, 0.75) 18%,
-      rgba(255, 255, 255, 0.95) 50%,
-      rgba(6, 182, 212, 0.75) 82%,
-      transparent 100%
-    );
-    box-shadow: 0 0 16px 1px rgba(255, 255, 255, 0.55), 0 0 60px 10px rgba(59, 130, 246, 0.4);
-  }
-  .header-flare::after {
-    content: '';
-    position: absolute;
-    top: -1.5px;
-    width: 160px;
-    height: 5px;
-    border-radius: 9999px;
-    background: linear-gradient(90deg, transparent, #fff, transparent);
-    filter: blur(3px);
-    animation: flare-sweep 7s ease-in-out infinite;
-  }
-  /* Soft light bleeding down from the header beam into the hero */
-  .header-flare-wash {
+  /* Vertical light beam — the actual Huly hero effect: a bright, thin
+     white-hot column dropping down the page with a soft blue/purple
+     glow fanning out around it, flaring into a bloom where it
+     terminates. Not a horizontal line — a vertical column. */
+  .hero-light-beam {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: min(1000px, 92%);
-    height: 320px;
-    background: radial-gradient(
-      ellipse at top,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(59, 130, 246, 0.14) 35%,
-      transparent 72%
-    );
-    filter: blur(16px);
+    width: 320px;
+    height: 100%;
     pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(59, 130, 246, 0.32) 0%,
+      rgba(139, 92, 246, 0.16) 45%,
+      transparent 85%
+    );
+    filter: blur(50px);
+  }
+  .hero-light-beam::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.55) 55%,
+      transparent 100%
+    );
+    box-shadow: 0 0 24px 2px rgba(255, 255, 255, 0.8), 0 0 80px 14px rgba(59, 130, 246, 0.55);
+  }
+  .hero-light-beam::after {
+    content: '';
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 480px;
+    height: 220px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(59, 130, 246, 0.28) 42%,
+      transparent 75%
+    );
+    filter: blur(34px);
+  }
+
+  /* Corner-glow frame — light bleeding in from two opposite corners of
+     an image border (amber/warm one corner, blue/cool the other), the
+     way Huly's feature-card screenshots are lit. Not a centered blob —
+     specifically anchored to two corners. */
+  .corner-flare-frame {
+    position: relative;
+    isolation: isolate;
+  }
+  .corner-flare-frame::before,
+  .corner-flare-frame::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 9999px;
+    filter: blur(26px);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.85;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .corner-flare-frame::before {
+    top: -24px;
+    left: -24px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.85), transparent 70%);
+  }
+  .corner-flare-frame::after {
+    bottom: -24px;
+    right: -24px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.85), transparent 70%);
+  }
+  .corner-flare-frame:hover::before,
+  .corner-flare-frame:hover::after {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  .corner-flare-frame > * {
+    position: relative;
     z-index: 1;
   }
 

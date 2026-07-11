@@ -101,10 +101,9 @@ export default function Hero() {
         style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)' }}
       />
 
-      {/* Header flare — the long, bright, "live" light beam across the
-          top of the hero, with a soft color wash bleeding down into it. */}
-      <div className="header-flare" />
-      <div className="header-flare-wash" />
+      {/* Vertical light beam — the actual Huly hero effect. Terminates
+          near the photo ring so it also gives the hero a focal point. */}
+      <div className="hero-light-beam hidden md:block" style={{ left: '72%' }} />
 
       {/* Left: text content */}
       <div className="relative z-10 container-base md:pr-0 max-w-xl md:ml-auto md:mr-0">

@@ -57,14 +57,15 @@ export default function ProjectShowcase({ project, index }: { project: Project; 
     >
       {/* Image column */}
       <div className={cn('order-1', imageFirst ? 'md:order-1' : 'md:order-2')}>
-        <div className="flare-surface flare-surface--bright aspect-video rounded-lg border border-border overflow-hidden">
-          <div className="flare-edge" aria-hidden="true" />
-          <div className="absolute inset-0 bg-dot-grid mask-radial-fade" aria-hidden="true" />
-          <div className="relative h-full flex flex-col items-center justify-center gap-2.5 text-text-tertiary p-6 text-center">
-            <div className="w-12 h-12 rounded-full bg-white/5 border border-border flex items-center justify-center shadow-glow-blue">
-              <ImageIcon size={22} strokeWidth={1.3} className="opacity-60 text-blue-light" aria-hidden="true" />
+        <div className="corner-flare-frame aspect-video rounded-lg border border-border">
+          <div className="absolute inset-0 rounded-lg overflow-hidden">
+            <div className="absolute inset-0 bg-dot-grid mask-radial-fade" aria-hidden="true" />
+            <div className="relative h-full flex flex-col items-center justify-center gap-2.5 text-text-tertiary p-6 text-center">
+              <div className="w-12 h-12 rounded-full bg-white/5 border border-border flex items-center justify-center shadow-glow-blue">
+                <ImageIcon size={22} strokeWidth={1.3} className="opacity-60 text-blue-light" aria-hidden="true" />
+              </div>
+              <span className="text-label-sm">{project.imageBrief}</span>
             </div>
-            <span className="text-label-sm">{project.imageBrief}</span>
           </div>
         </div>
       </div>
