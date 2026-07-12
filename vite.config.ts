@@ -16,16 +16,17 @@ export default defineConfig({
     },
   },
   build: {
-  target: 'esnext',
-  rollupOptions: {
-    output: {
-      manualChunks(id) {
-        if (id.includes('node_modules')) {
-          if (id.includes('three') || id.includes('@react-three')) return 'three-vendor'
-          if (id.includes('framer-motion') || id.includes('gsap')) return 'motion-vendor'
-          if (id.includes('react-router-dom') || id.includes('react-dom') || id.includes('/react/')) return 'react-vendor'
-        }
+    target: 'esnext',
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('three') || id.includes('@react-three')) return 'three-vendor'
+            if (id.includes('framer-motion') || id.includes('gsap')) return 'motion-vendor'
+            if (id.includes('react-router-dom') || id.includes('react-dom') || id.includes('/react/')) return 'react-vendor'
+          }
+        },
       },
     },
   },
-},
+})
