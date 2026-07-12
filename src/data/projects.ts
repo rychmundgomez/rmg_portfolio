@@ -110,7 +110,7 @@ export const projects: Project[] = [
       'Live storefront with a working Paystack payment flow',
       'Funnel visibility into where users drop off before purchase',
     ],
-    links: [{ label: 'View project', href: '#', kind: 'demo' }],
+    links: [{ label: 'View project', href: 'https://datago-cxv.pages.dev/', kind: 'demo' }],
     imageSide: 'right',
   },
   {
