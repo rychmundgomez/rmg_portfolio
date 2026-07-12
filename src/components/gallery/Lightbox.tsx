@@ -1,7 +1,8 @@
 import { useEffect, useCallback, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { X, ChevronLeft, ChevronRight, ImageIcon } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import type { GalleryItem } from '@data/gallery'
+import SmartImage from '@components/ui/SmartImage'
 
 interface LightboxProps {
   items: GalleryItem[]
@@ -100,9 +101,8 @@ export default function Lightbox({ items, activeIndex, onClose, onNavigate }: Li
             onClick={(e) => e.stopPropagation()}
             className="glass-card max-w-2xl w-full p-8"
           >
-            <div className="aspect-video rounded-lg bg-gradient-to-br from-bg-overlay to-bg-muted border border-border flex flex-col items-center justify-center gap-3 text-text-tertiary mb-5">
-              <ImageIcon size={32} strokeWidth={1.3} className="opacity-30" aria-hidden="true" />
-              <span className="text-label-sm px-6 text-center">{item.imageBrief}</span>
+            <div className="aspect-video rounded-lg border border-border overflow-hidden mb-5">
+              <SmartImage src={item.image} alt={item.title} fallbackLabel={item.imageBrief} fallbackIconSize={32} />
             </div>
             <div className="text-label-xs text-cyan mb-1.5">{item.category}</div>
             <h3 id={titleId} className="font-display font-semibold text-body-lg">

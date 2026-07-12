@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ExternalLink, Github, Play, ImageIcon } from 'lucide-react'
+import { ExternalLink, Github, Play } from 'lucide-react'
 import type { Project, ProjectLink } from '@data/projects'
+import SmartImage from '@components/ui/SmartImage'
 import { cn } from '@lib/utils'
 
 type Tab = 'features' | 'challenges' | 'results'
@@ -60,12 +61,12 @@ export default function ProjectShowcase({ project, index }: { project: Project; 
         <div className="corner-flare-frame aspect-video rounded-lg border border-border">
           <div className="absolute inset-0 rounded-lg overflow-hidden">
             <div className="absolute inset-0 bg-dot-grid mask-radial-fade" aria-hidden="true" />
-            <div className="relative h-full flex flex-col items-center justify-center gap-2.5 text-text-tertiary p-6 text-center">
-              <div className="w-12 h-12 rounded-full bg-white/5 border border-border flex items-center justify-center shadow-glow-blue">
-                <ImageIcon size={22} strokeWidth={1.3} className="opacity-60 text-blue-light" aria-hidden="true" />
-              </div>
-              <span className="text-label-sm">{project.imageBrief}</span>
-            </div>
+            <SmartImage
+              src={project.image}
+              alt={`${project.title} preview`}
+              fallbackLabel={project.imageBrief}
+              className="relative"
+            />
           </div>
         </div>
       </div>

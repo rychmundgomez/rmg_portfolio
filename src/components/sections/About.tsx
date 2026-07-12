@@ -34,7 +34,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 gap-3.5">
           {aboutStats.map((stat, i) => (
             <GlassCard key={stat.id} index={i} className="p-6">
               <div className="text-display-sm text-gradient-primary mb-1">{stat.value}</div>

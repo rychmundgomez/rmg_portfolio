@@ -12,6 +12,8 @@ export interface Project {
   description: string
   /** Recommended image: what to shoot/source and at what aspect ratio, for when real images are added. */
   imageBrief: string
+  /** Path in /public once the real image is added, e.g. /images/projects/stackup-nest.jpg */
+  image?: string
   techStack: string[]
   features: string[]
   challenges: string[]
@@ -24,6 +26,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'stackup-nest',
+    image: '/images/projects/stackup-nest.jpg',
     category: 'Fintech Platform',
     title: 'StackUp Nest',
     tagline: 'A full savings & loans platform, built and run solo.',
@@ -60,13 +63,14 @@ export const projects: Project[] = [
   },
   {
     id: 'loan-agreement-generator',
+    image: '/images/projects/loan-agreement-generator.jpg',
     category: 'Legal Tech',
     title: 'Loan Agreement Generator',
     tagline: 'Ghana-context legal documents, generated in seconds.',
     description:
       'A focused web app for generating legally-formatted loan agreements with Ghanaian context built in from the ground up — GHS currency formatting and Ghana Card ID fields — exporting straight to PDF or DOCX.',
     imageBrief: 'Form UI + generated PDF document side-by-side mockup, 4:3',
-    techStack: ['React', 'Vite', 'Tailwind CSS', 'Netlify'],
+    techStack: ['React', 'Vite', 'Tailwind CSS', 'Cloudflare Pages'],
     features: [
       'Dynamic form with live document preview',
       'Ghana Card ID and GHS currency fields built into the schema',
@@ -77,14 +81,15 @@ export const projects: Project[] = [
       'Keeping legal formatting consistent across PDF and DOCX exports from a single source of truth',
     ],
     results: [
-      'Deployed and usable end-to-end on Netlify',
+      'Deployed and usable end-to-end on Cloudflare Pages',
       'Reduced agreement drafting from a manual template edit to a guided form',
     ],
-    links: [{ label: 'View project', href: '#', kind: 'demo' }],
+    links: [{ label: 'Visit site', href: 'https://loan-agreement-generator.pages.dev/', kind: 'live' }],
     imageSide: 'left',
   },
   {
     id: 'ghana-data-storefront',
+    image: '/images/projects/ghana-data-storefront.jpg',
     category: 'E-Commerce',
     title: 'Ghana Mobile Data Storefront',
     tagline: 'Buy data bundles without creating an account.',
@@ -110,6 +115,7 @@ export const projects: Project[] = [
   },
   {
     id: 'mediacraft',
+    image: '/images/projects/mediacraft.jpg',
     category: 'Digital Hub · In Development',
     title: 'MediaCraft',
     tagline: 'Build. Brand. Engage.',
@@ -130,6 +136,7 @@ export const projects: Project[] = [
   },
   {
     id: 'dot-shot',
+    image: '/images/projects/dot-shot.jpg',
     category: 'Playable · Featured',
     title: 'Dot Shot',
     tagline: 'A small arcade game, built into this site.',

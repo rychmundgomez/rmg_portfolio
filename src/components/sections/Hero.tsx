@@ -1,8 +1,9 @@
 import { lazy, Suspense, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useGSAP } from '@gsap/react'
-import { Github, Linkedin, Link2, ArrowRight, User } from 'lucide-react'
+import { Github, Linkedin, Link2, ArrowRight, Instagram, Facebook, Twitter } from 'lucide-react'
 import Button from '@components/ui/Button'
+import SmartImage from '@components/ui/SmartImage'
 import { useTypewriter } from '@hooks/useTypewriter'
 import { useMediaQuery } from '@hooks/useMediaQuery'
 import { useReducedMotion } from '@hooks/useReducedMotion'
@@ -15,6 +16,14 @@ import { heroRoles, socialLinks, orbitTools, trustLayer } from '@data/about'
 const HeroScene = lazy(() => import('./HeroScene'))
 
 const EASE = [0.16, 1, 0.3, 1] as const
+
+function TikTokIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M16.5 2h-3.2v13.6a2.9 2.9 0 1 1-2.4-2.86V9.5a6.1 6.1 0 1 0 5.6 6.08V8.9a7.6 7.6 0 0 0 4.5 1.46V7.15A4.35 4.35 0 0 1 16.5 2z" />
+    </svg>
+  )
+}
 
 export default function Hero() {
   const roleText = useTypewriter(heroRoles)
@@ -102,7 +111,7 @@ export default function Hero() {
 
       {/* Vertical light beam — falls from the top of the hero, through
           open space, and pours onto the panel below. */}
-      <div className="hero-light-beam hidden md:block" />
+      <div className="hero-light-beam" />
 
       {/* Text content — top, constrained width, open space around it */}
       <div className="relative z-10 container-base max-w-2xl mb-16 md:mb-24">
@@ -120,7 +129,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.05, ease: EASE }}
-          className="text-label-xs tracking-[0.2em] uppercase text-text-tertiary mb-4"
+          className="text-body-md md:text-body-lg font-semibold tracking-[0.14em] uppercase text-text-primary mb-4"
         >
           Richmond Makafui Gamor
         </motion.p>
@@ -206,6 +215,42 @@ export default function Hero() {
           >
             <Link2 size={15} aria-hidden="true" />
           </a>
+          <a
+            href={socialLinks.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
+          >
+            <Instagram size={15} aria-hidden="true" />
+          </a>
+          <a
+            href={socialLinks.tiktok}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
+          >
+            <TikTokIcon size={15} />
+          </a>
+          <a
+            href={socialLinks.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
+          >
+            <Facebook size={15} aria-hidden="true" />
+          </a>
+          <a
+            href={socialLinks.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X (Twitter)"
+            className="w-9 h-9 rounded-md bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors duration-200"
+          >
+            <Twitter size={15} aria-hidden="true" />
+          </a>
         </motion.div>
 
         <motion.div
@@ -224,8 +269,9 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Panel — big, wide, sits below the text where the beam lands */}
-      <div className="hidden md:flex relative z-10 flex-1 items-end justify-center container-base">
+      {/* Panel — big, wide, sits below the text where the beam lands.
+          Stacks to a single column on mobile instead of being hidden. */}
+      <div className="flex relative z-10 flex-1 items-end justify-center container-base">
         <div ref={cardRef} className="w-full max-w-[860px]">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -233,15 +279,17 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
             className="card-flare-frame w-full"
           >
-            <div className="card-flare-frame__edge-glow" aria-hidden="true" />
-            <div className="card-flare-frame__inner grid grid-cols-[280px_1fr] gap-8 p-8">
-              {/* Left: photo + name */}
+            <div className="card-flare-frame__edge-glow hidden md:block" aria-hidden="true" />
+            <div className="card-flare-frame__inner grid grid-cols-1 md:grid-cols-[280px_1fr] gap-6 md:gap-8 p-5 md:p-8">
+              {/* Photo + name */}
               <div className="flex flex-col">
-                {/* Replace this placeholder with:
-                    <img src="/your-photo.jpg" alt="Richmond Makafui Gamor" className="w-full aspect-[4/5] rounded-xl object-cover" />
-                */}
-                <div className="w-full aspect-[4/5] rounded-xl bg-gradient-to-br from-[#111827] to-[#0d1120] border border-border flex items-center justify-center mb-4">
-                  <User size={52} className="text-text-tertiary opacity-30" strokeWidth={1.2} aria-hidden="true" />
+                <div className="w-full aspect-square md:aspect-[4/5] rounded-xl bg-gradient-to-br from-[#111827] to-[#0d1120] border border-border overflow-hidden mb-3 md:mb-4">
+                  <SmartImage
+                    src="/your-photo.jpg"
+                    alt="Richmond Makafui Gamor"
+                    className="rounded-xl"
+                    fallbackIconSize={44}
+                  />
                 </div>
                 <p className="text-label-md tracking-[0.1em] uppercase text-text-primary font-semibold">
                   Richmond
@@ -249,17 +297,17 @@ export default function Hero() {
                 <p className="text-label-sm text-text-tertiary">Makafui Gamor</p>
               </div>
 
-              {/* Right: role + attributes, given real room to breathe */}
+              {/* Role + attributes */}
               <div className="flex flex-col justify-center">
-                <p className="font-display font-semibold text-display-sm text-text-primary mb-2">
+                <p className="font-display font-semibold text-xl md:text-display-sm text-text-primary mb-2">
                   Creative Technologist
                 </p>
-                <div className="inline-flex items-center gap-1.5 text-label-sm text-green mb-6 w-fit">
+                <div className="inline-flex items-center gap-1.5 text-label-sm text-green mb-5 md:mb-6 w-fit">
                   <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse-dot" />
                   Available for projects
                 </div>
 
-                <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 mb-6">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-5 md:mb-6">
                   {['Software Builder', 'Data Analyst', 'Fintech Operator', 'Based in Accra, Ghana'].map(
                     (attr) => (
                       <li key={attr} className="flex items-center gap-2 text-body-sm text-text-secondary">
@@ -270,7 +318,7 @@ export default function Hero() {
                   )}
                 </ul>
 
-                <div className="flex flex-wrap gap-2 mt-auto pt-5 border-t border-border">
+                <div className="flex flex-wrap gap-2 mt-auto pt-4 md:pt-5 border-t border-border">
                   {orbitTools.map((tool) => (
                     <span key={tool} className="tag-chip">
                       {tool}

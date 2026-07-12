@@ -23,6 +23,10 @@ export const socialLinks = {
   linkedin: 'https://linkedin.com/in/richmond-makafui-gamor-387237203',
   github: 'https://github.com/rychmundgomez',
   stackupNest: 'https://stackupnest.pages.dev',
+  instagram: 'https://www.instagram.com/rych.mund/',
+  tiktok: 'https://www.tiktok.com/@rych.mund',
+  facebook: 'https://www.facebook.com/rychmundgomez',
+  twitter: 'https://x.com/RychmundGomez',
 } as const
 
 export const orbitTools: string[] = [

@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ImageIcon } from 'lucide-react'
 import SectionHeader from '@components/ui/SectionHeader'
+import SmartImage from '@components/ui/SmartImage'
 import Lightbox from '@components/gallery/Lightbox'
 import { galleryCategories, galleryItems, type GalleryCategory } from '@data/gallery'
 import { cn } from '@lib/utils'
@@ -80,21 +80,20 @@ export default function Gallery() {
                   }}
                   className={cn(
                     'group relative rounded-lg overflow-hidden bg-gradient-to-br from-bg-overlay to-bg-muted border border-border text-left',
-                    'flex flex-col items-center justify-center gap-2 p-4 text-center',
                     'hover:border-border-hover transition-colors duration-250',
                     SIZE_CLASSES[item.size]
                   )}
                 >
-                  <ImageIcon
-                    size={22}
-                    strokeWidth={1.3}
-                    aria-hidden="true"
-                    className="text-text-tertiary opacity-25 group-hover:opacity-40 transition-opacity duration-250"
+                  <SmartImage
+                    src={item.image}
+                    alt={item.title}
+                    fallbackLabel={item.imageBrief}
+                    className="absolute inset-0"
                   />
-                  <span className="text-label-sm text-text-tertiary group-hover:text-text-secondary transition-colors duration-250">
-                    {item.title}
-                  </span>
-                  <span className="text-label-xs text-cyan/70">{item.category}</span>
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col gap-0.5 p-3 bg-gradient-to-t from-black/70 via-black/20 to-transparent">
+                    <span className="text-label-sm text-text-primary">{item.title}</span>
+                    <span className="text-label-xs text-cyan/80">{item.category}</span>
+                  </div>
                 </motion.button>
               )
             })}
