@@ -114,8 +114,8 @@ export class DotShotEngine {
     // Pins are now thin pins rather than fat balls, so the required gap
     // can be much tighter (close to CloudStudio's own DOT SHOT, ~0.165rad)
     // while still leaving real breathing room around the hub.
-    const base = 0.20
-    const tighten = Math.min(this.pins.length * 0.0022, 0.07)
+    const base = 0.2
+    const tighten = Math.min(this.pins.length * 0.0028, 0.09)
     return base - tighten
   }
 
@@ -159,7 +159,7 @@ export class DotShotEngine {
     if (!this.started) return
 
     // Hub rotation — sped up and possibly reversed during a boss wave.
-    const speedMultiplier = this.bossActive ? 1.35 : 1 + Math.min(this.pins.length * 0.01, 0.55)
+    const speedMultiplier = this.bossActive ? 1.7 : 1 + Math.min(this.pins.length * 0.014, 0.75)
     this.hubRotation += this.hubBaseSpeed * speedMultiplier * this.hubDirection * dt
 
     // Particles
@@ -218,9 +218,7 @@ export class DotShotEngine {
       } else if (pinIndex % BOSS_EVERY === 0) {
         this.bossActive = true
         this.bossPinsRemaining = BOSS_WAVE_LENGTH
-        if (Math.random() < 0.5) {
-          this.hubDirection = this.hubDirection === 1 ? -1 : 1
-        }
+        this.hubDirection = this.hubDirection === 1 ? -1 : 1
       }
 
       this.emit()
