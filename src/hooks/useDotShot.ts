@@ -43,6 +43,8 @@ export function useDotShot(): UseDotShotResult {
   const [snapshot, setSnapshot] = useState<EngineSnapshot>({
     score: 0,
     best: 0,
+    wins: 0,
+    wonThisRun: false,
     gameOver: false,
     started: false,
     bossActive: false,
@@ -88,6 +90,8 @@ export function useDotShot(): UseDotShotResult {
     setSnapshot({
       score: 0,
       best: engine.best,
+      wins: engine.wins,
+      wonThisRun: false,
       gameOver: false,
       started: false,
       bossActive: false,
@@ -121,10 +125,18 @@ export function useDotShot(): UseDotShotResult {
     }, 150)
     window.addEventListener('resize', onResize)
 
+    // Also watch the container directly — catches layout-driven width
+    // changes (e.g. sibling content reflowing) that don't fire a window
+    // 'resize' event, so the canvas bitmap never drifts out of sync with
+    // its own box.
+    const resizeObserver = new ResizeObserver(onResize)
+    resizeObserver.observe(container)
+
     return () => {
       cancelAnimationFrame(rafRef.current)
       document.removeEventListener('visibilitychange', onVisibility)
       window.removeEventListener('resize', onResize)
+      resizeObserver.disconnect()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
