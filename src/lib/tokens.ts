@@ -9,29 +9,29 @@
 
 export const colors = {
   bg: {
-    base: '#090a0c',
-    subtle: '#0d0f14',
-    muted: '#111520',
-    overlay: '#161b28',
+    base: '#050816',
+    subtle: '#080b1a',
+    muted: '#0a0f22',
+    overlay: '#0D1224',
   },
   text: {
-    primary: '#ECEFF4',
-    secondary: '#8492A6',
+    primary: '#F8FAFC',
+    secondary: '#94A3B8',
     // Kept in sync with tailwind.config.ts — see the comment there for
     // the contrast measurement (4.56:1, WCAG AA pass).
     tertiary: '#6B7A94',
     disabled: '#2D3748',
   },
   brand: {
-    blue: '#3B82F6',
-    blueDark: '#2563EB',
-    blueLight: '#60A5FA',
-    cyan: '#06B6D4',
-    cyanDark: '#0891B2',
-    cyanLight: '#22D3EE',
-    purple: '#8B5CF6',
-    purpleDark: '#7C3AED',
-    purpleLight: '#A78BFA',
+    blue: '#4F7CFF',
+    blueDark: '#3D63D9',
+    blueLight: '#7B9CFF',
+    cyan: '#00D4FF',
+    cyanDark: '#00A8CC',
+    cyanLight: '#4FE0FF',
+    purple: '#7B61FF',
+    purpleDark: '#6247D9',
+    purpleLight: '#9884FF',
     green: '#10B981',
     amber: '#F59E0B',
   },
@@ -43,9 +43,9 @@ export const colors = {
 
 /** RGB triplets (no `rgb()` wrapper) for use in canvas rgba() strings or Three.js Color hex math. */
 export const colorsRgb = {
-  blue: '59,130,246',
-  cyan: '6,182,212',
-  purple: '139,92,246',
+  blue: '79,124,255',
+  cyan: '0,212,255',
+  purple: '123,97,255',
   green: '16,185,129',
   amber: '245,158,11',
 } as const

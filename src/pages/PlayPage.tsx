@@ -14,11 +14,11 @@ export default function PlayPage() {
       {/* Background flares — consistent with the rest of the site */}
       <div
         className="absolute w-[600px] h-[600px] rounded-full pointer-events-none -top-40 -left-24 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.08) 0%, transparent 70%)' }}
       />
       <div
         className="absolute w-[500px] h-[500px] rounded-full pointer-events-none -bottom-32 -right-20 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(0,212,255,0.07) 0%, transparent 70%)' }}
       />
 
       <Link
@@ -80,7 +80,7 @@ export default function PlayPage() {
             tabIndex={-1}
             onPointerDown={() => (started && !gameOver ? fire() : undefined)}
             className="rounded-xl block w-full h-auto cursor-crosshair touch-none"
-            style={{ background: 'radial-gradient(circle at 50% 30%, #111520 0%, #090a0c 75%)' }}
+            style={{ background: 'radial-gradient(circle at 50% 30%, #0a0f22 0%, #050816 75%)' }}
           />
 
           {/* Start overlay */}

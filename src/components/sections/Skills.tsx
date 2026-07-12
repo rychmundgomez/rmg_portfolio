@@ -5,9 +5,9 @@ import { skillCategories } from '@data/skills'
 import { cn } from '@lib/utils'
 
 const ICON_BG: Record<string, string> = {
-  blue: 'bg-blue/12 shadow-[0_0_0_1px_rgba(59,130,246,0.2)]',
-  cyan: 'bg-cyan/12 shadow-[0_0_0_1px_rgba(6,182,212,0.2)]',
-  purple: 'bg-purple/12 shadow-[0_0_0_1px_rgba(139,92,246,0.2)]',
+  blue: 'bg-blue/12 shadow-[0_0_0_1px_rgba(79,124,255,0.2)]',
+  cyan: 'bg-cyan/12 shadow-[0_0_0_1px_rgba(0,212,255,0.2)]',
+  purple: 'bg-purple/12 shadow-[0_0_0_1px_rgba(123,97,255,0.2)]',
   green: 'bg-green/12 shadow-[0_0_0_1px_rgba(16,185,129,0.2)]',
 }
 

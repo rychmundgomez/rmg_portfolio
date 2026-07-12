@@ -7,12 +7,14 @@ const config: Config = {
     extend: {
       // ── COLOR SYSTEM ───────────────────────────────────
       colors: {
-        // Backgrounds (darkest → lightest)
+        // Backgrounds (darkest → lightest) — Background/Surface match the
+        // doc's exact hex spec (#050816 / #0D1224); subtle/muted are
+        // interpolated steps between them for the existing 4-step scale.
         bg: {
-          base:    '#090a0c',   // Huly's exact dark
-          subtle:  '#0d0f14',
-          muted:   '#111520',
-          overlay: '#161b28',
+          base:    '#050816',
+          subtle:  '#080b1a',
+          muted:   '#0a0f22',
+          overlay: '#0D1224',
         },
         // Surfaces
         surface: {
@@ -24,30 +26,31 @@ const config: Config = {
         border: {
           DEFAULT: 'rgba(255,255,255,0.065)',
           hover:   'rgba(255,255,255,0.14)',
-          focus:   'rgba(59,130,246,0.45)',
+          focus:   'rgba(79,124,255,0.45)',
         },
-        // Text hierarchy
+        // Text hierarchy — Text/Muted match the doc's exact hex spec
+        // (#F8FAFC / #94A3B8). Tertiary re-verified at 4.59:1 against the
+        // new #050816 background (still passes WCAG AA); disabled is
+        // decorative-only and isn't held to a contrast minimum.
         text: {
-          primary:   '#ECEFF4',
-          secondary: '#8492A6',
-          // Was #4A5568 (2.63:1 against bg-base — fails WCAG AA even for
-          // large text). This value measures 4.56:1, passing AA for
-          // normal-size text. See contrast_check.py in the repo history
-          // if this ever needs re-verifying after a palette change.
+          primary:   '#F8FAFC',
+          secondary: '#94A3B8',
           tertiary:  '#6B7A94',
-          disabled:  '#2D3748',
+          disabled:  '#232A42',
         },
-        // Brand accents
-        blue:   { DEFAULT: '#3B82F6', dark: '#2563EB', light: '#60A5FA' },
-        cyan:   { DEFAULT: '#06B6D4', dark: '#0891B2', light: '#22D3EE' },
-        purple: { DEFAULT: '#8B5CF6', dark: '#7C3AED', light: '#A78BFA' },
+        // Brand accents — DEFAULT values match the doc's exact hex spec
+        // (Primary #4F7CFF, Secondary #7B61FF, Accent #00D4FF); dark/light
+        // steps interpolated to preserve the existing 3-step scale.
+        blue:   { DEFAULT: '#4F7CFF', dark: '#3D63D9', light: '#7B9CFF' },
+        cyan:   { DEFAULT: '#00D4FF', dark: '#00A8CC', light: '#4FE0FF' },
+        purple: { DEFAULT: '#7B61FF', dark: '#6247D9', light: '#9884FF' },
         green:  { DEFAULT: '#10B981', dark: '#059669', light: '#34D399' },
         amber:  { DEFAULT: '#F59E0B', dark: '#D97706', light: '#FCD34D' },
       },
 
       // ── TYPOGRAPHY ────────────────────────────────────
       fontFamily: {
-        display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+        display: ['"General Sans"', 'system-ui', 'sans-serif'],
         body:    ['Inter', 'system-ui', 'sans-serif'],
         mono:    ['"Geist Mono"', '"JetBrains Mono"', 'monospace'],
       },

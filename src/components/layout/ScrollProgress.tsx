@@ -12,7 +12,7 @@ export default function ScrollProgress() {
       className="fixed top-0 left-0 h-[1.5px] z-[300] bg-grad-primary"
       style={{
         width: `${progress}%`,
-        boxShadow: '0 0 8px rgba(6,182,212,0.6)',
+        boxShadow: '0 0 8px rgba(0,212,255,0.6)',
         transition: 'width 100ms linear',
       }}
       aria-hidden="true"

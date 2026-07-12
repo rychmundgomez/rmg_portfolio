@@ -26,7 +26,7 @@ export default function Experience() {
           <div
             className="absolute left-0 top-1.5 bottom-0 w-px"
             style={{
-              background: 'linear-gradient(to bottom, #3B82F6, #8B5CF6, rgba(139,92,246,0.1))',
+              background: 'linear-gradient(to bottom, #4F7CFF, #7B61FF, rgba(123,97,255,0.1))',
             }}
           />
 
@@ -43,8 +43,8 @@ export default function Experience() {
               <div
                 className="absolute -left-[1.865rem] top-1.5 w-2.5 h-2.5 rounded-full bg-blue"
                 style={{
-                  border: '2px solid #0d0f14',
-                  boxShadow: '0 0 0 3px rgba(59,130,246,0.18), 0 0 12px rgba(59,130,246,0.15)',
+                  border: '2px solid #080b1a',
+                  boxShadow: '0 0 0 3px rgba(79,124,255,0.18), 0 0 12px rgba(79,124,255,0.15)',
                 }}
               />
 

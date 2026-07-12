@@ -92,12 +92,12 @@ export default function Hero() {
       <div
         ref={flare1Ref}
         className="absolute w-[700px] h-[700px] rounded-full pointer-events-none -top-52 -right-24 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(79,124,255,0.22) 0%, transparent 70%)' }}
       />
       <div
         ref={flare2Ref}
         className="absolute w-[500px] h-[500px] rounded-full pointer-events-none -bottom-36 -left-12 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(123,97,255,0.18) 0%, transparent 70%)' }}
       />
 
       {/* Vertical light beam — falls from the top of the hero, through

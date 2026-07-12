@@ -33,7 +33,7 @@
   }
 
   ::selection {
-    background: rgba(59, 130, 246, 0.35);
+    background: rgba(79, 124, 255, 0.35);
     color: #fff;
   }
 
@@ -51,7 +51,7 @@
     border: 2px solid theme('colors.bg.base');
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(59, 130, 246, 0.35);
+    background: rgba(79, 124, 255, 0.35);
   }
 
   /* Focus ring — accessible, on-brand */
@@ -200,14 +200,14 @@
     left: -15%;
     width: 65%;
     height: 85%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.45), transparent 68%);
+    background: radial-gradient(circle, rgba(79, 124, 255, 0.45), transparent 68%);
   }
   .flare-surface::after {
     bottom: -35%;
     right: -15%;
     width: 60%;
     height: 80%;
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.4), transparent 68%);
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.4), transparent 68%);
   }
   .flare-surface:hover::before {
     opacity: 0.85;
@@ -222,7 +222,7 @@
     background: radial-gradient(circle, rgba(245, 158, 11, 0.4), transparent 68%);
   }
   .flare-surface--warm::after {
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.35), transparent 68%);
+    background: radial-gradient(circle, rgba(123, 97, 255, 0.35), transparent 68%);
   }
   /* Ensure direct children sit above the flare blooms */
   .flare-surface > * {
@@ -234,11 +234,11 @@
      not just a faint corner tint. */
   .flare-surface--bright::before {
     opacity: 0.75;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.6), transparent 68%);
+    background: radial-gradient(circle, rgba(123, 156, 255, 0.6), transparent 68%);
   }
   .flare-surface--bright::after {
     opacity: 0.6;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.55), transparent 68%);
+    background: radial-gradient(circle, rgba(79, 224, 255, 0.55), transparent 68%);
   }
   .flare-surface--bright:hover::before {
     opacity: 1;
@@ -269,8 +269,8 @@
     z-index: 1;
     background: linear-gradient(
       180deg,
-      rgba(59, 130, 246, 0.4) 0%,
-      rgba(139, 92, 246, 0.2) 45%,
+      rgba(79, 124, 255, 0.4) 0%,
+      rgba(123, 97, 255, 0.2) 45%,
       transparent 85%
     );
     filter: blur(60px);
@@ -289,7 +289,7 @@
       rgba(255, 255, 255, 0.6) 55%,
       transparent 100%
     );
-    box-shadow: 0 0 30px 3px rgba(255, 255, 255, 0.9), 0 0 100px 18px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 30px 3px rgba(255, 255, 255, 0.9), 0 0 100px 18px rgba(79, 124, 255, 0.6);
   }
   .hero-light-beam::after {
     content: '';
@@ -302,7 +302,7 @@
     background: radial-gradient(
       ellipse at center,
       rgba(255, 255, 255, 0.45) 0%,
-      rgba(59, 130, 246, 0.3) 42%,
+      rgba(79, 124, 255, 0.3) 42%,
       transparent 75%
     );
     filter: blur(40px);
@@ -337,7 +337,7 @@
   .corner-flare-frame::after {
     bottom: -24px;
     right: -24px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.85), transparent 70%);
+    background: radial-gradient(circle, rgba(79, 124, 255, 0.85), transparent 70%);
   }
   .corner-flare-frame:hover::before,
   .corner-flare-frame:hover::after {
@@ -362,8 +362,8 @@
       180deg,
       rgba(255, 255, 255, 0.95) 0%,
       rgba(129, 180, 255, 0.75) 8%,
-      rgba(59, 130, 246, 0.4) 22%,
-      rgba(59, 130, 246, 0.14) 45%,
+      rgba(79, 124, 255, 0.4) 22%,
+      rgba(79, 124, 255, 0.14) 45%,
       rgba(255, 255, 255, 0.06) 70%,
       rgba(255, 255, 255, 0.06) 100%
     );
@@ -377,7 +377,7 @@
     transform: translateX(-50%);
     width: 70%;
     height: 140px;
-    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(59, 130, 246, 0.3) 45%, transparent 75%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(79, 124, 255, 0.3) 45%, transparent 75%);
     filter: blur(28px);
     pointer-events: none;
     z-index: -1;
@@ -396,8 +396,8 @@
     height: 92%;
     background: linear-gradient(
       180deg,
-      rgba(96, 165, 250, 0.6) 0%,
-      rgba(139, 92, 246, 0.5) 40%,
+      rgba(123, 156, 255, 0.6) 0%,
+      rgba(123, 97, 255, 0.5) 40%,
       rgba(236, 72, 153, 0.35) 70%,
       transparent 100%
     );
@@ -446,7 +446,7 @@
      card that visually pops out of the Huly bento grid. */
   .bento-tile--featured {
     border-color: rgba(255, 255, 255, 0.22);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 24px 60px -12px rgba(59, 130, 246, 0.28);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 24px 60px -12px rgba(79, 124, 255, 0.28);
   }
 
   /* Bento circle — the standalone circular tile (Huly's "08 March" date

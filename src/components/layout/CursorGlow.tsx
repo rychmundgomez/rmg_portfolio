@@ -55,7 +55,7 @@ export default function CursorGlow() {
       style={{
         width: SIZE,
         height: SIZE,
-        background: 'radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(79,124,255,0.09) 0%, transparent 70%)',
       }}
     />
   )

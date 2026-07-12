@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScrollProgress from '@components/layout/ScrollProgress'
 import CursorGlow from '@components/layout/CursorGlow'
 import AuroraBackground from '@components/layout/AuroraBackground'
+import CommandPalette from '@components/layout/CommandPalette'
 import ErrorBoundary from '@components/layout/ErrorBoundary'
 import HomePage from '@pages/HomePage'
 import PlayPage from '@pages/PlayPage'
@@ -23,6 +24,7 @@ export default function App() {
       <div className="noise-overlay" aria-hidden="true" />
       <CursorGlow />
       <ScrollProgress />
+      <CommandPalette />
 
       <ErrorBoundary>
         <Routes>

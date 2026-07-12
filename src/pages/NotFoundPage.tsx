@@ -9,7 +9,7 @@ export default function NotFoundPage() {
     <main className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
       <div
         className="absolute w-[500px] h-[500px] rounded-full pointer-events-none -top-32 -right-20 z-0"
-        style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, rgba(79,124,255,0.08) 0%, transparent 70%)' }}
       />
       <div className="glass-card max-w-md w-full p-8 text-center relative z-10">
         <div className="text-display-lg text-gradient-primary font-bold mb-2">404</div>
