@@ -131,7 +131,7 @@ export const projects: Project[] = [
       'Scoping a multi-service platform without overbuilding before validating demand',
     ],
     results: ['Brand identity and service structure defined; build in progress'],
-    links: [],
+    links: [{ label: 'Visit site', href: 'https://t-ultimateresource.pages.dev/', kind: 'live' }],
     imageSide: 'left',
   },
   {
