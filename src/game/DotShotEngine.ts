@@ -32,8 +32,8 @@ export interface EngineSnapshot {
 
 const PIN_PALETTE = [colorsRgb.blue, colorsRgb.cyan, colorsRgb.purple]
 const GOLDEN_EVERY = 6 // every 6th stuck pin is golden (bonus points)
-const BOSS_EVERY = 14 // every 14th stuck pin triggers a boss speed-spike wave
-const BOSS_WAVE_LENGTH = 3 // pins the player must survive during a boss wave
+const BOSS_EVERY = 8 // every 8th stuck pin triggers a boss speed-spike wave
+const BOSS_WAVE_LENGTH = 5 // pins the player must survive during a boss wave
 
 /**
  * DOT SHOT — shoot dots up into a rotating hub. Each shot sticks as a pin;
@@ -114,7 +114,7 @@ export class DotShotEngine {
     // Pins are now thin pins rather than fat balls, so the required gap
     // can be much tighter (close to CloudStudio's own DOT SHOT, ~0.165rad)
     // while still leaving real breathing room around the hub.
-    const base = 0.23
+    const base = 0.20
     const tighten = Math.min(this.pins.length * 0.0022, 0.07)
     return base - tighten
   }
